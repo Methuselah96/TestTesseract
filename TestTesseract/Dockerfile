@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /App
 
 # Copy everything
@@ -9,7 +9,7 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/runtime:3.1
+FROM mcr.microsoft.com/dotnet/runtime:6.0
 RUN apt update
 RUN apt install -y libtesseract-dev
 RUN apt install -y tesseract-ocr
