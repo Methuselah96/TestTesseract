@@ -1,4 +1,5 @@
-﻿using Tesseract;
+﻿using System;
+using Tesseract;
 
 namespace TestTesseract
 {
