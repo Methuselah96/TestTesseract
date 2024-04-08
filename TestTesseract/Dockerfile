@@ -14,8 +14,6 @@ RUN apt update
 RUN apt install -y libtesseract-dev
 RUN apt install -y tesseract-ocr
 RUN apt install -y libc6-dev
-RUN apt install -y libjpeg62-turbo-dev
-RUN apt install -y libgdiplus
 WORKDIR /App
 COPY --from=build-env /App/out .
 RUN ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5 ./x64/libleptonica-1.80.0.so
