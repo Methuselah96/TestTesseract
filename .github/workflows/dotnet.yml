@@ -18,6 +18,7 @@ jobs:
     - uses: actions/checkout@v4
     - run: sudo apt install tesseract-ocr
     - run: sudo apt install libtesseract-dev
+    - run: sudo apt install libc6-dev
     - run: mkdir ./TestTesseract/x64
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -28,4 +29,4 @@ jobs:
     - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5 ./TestTesseract/bin/Release/net6.0/x64/libleptonica-1.80.0.so
     - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so.4 ./TestTesseract/bin/Release/net6.0/x64/libtesseract41.so
     - name: Run
-      run: dotnet ./TestTesseract/bin/Release/net6.0/publish/Tesseract.dll
+      run: ./TestTesseract/bin/Release/net6.0/publish/Tesseract.exe
