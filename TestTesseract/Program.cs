@@ -1,10 +1,23 @@
-﻿namespace TestTesseract
+﻿using Tesseract;
+
+namespace TestTesseract
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var imageBase64 = "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";
+            var imageBytes = Convert.FromBase64String(imageBase64);
+
+            string text;
+            using (var engine = new TesseractEngine(@"./tessdata", "eng", EngineMode.Default))
+            {
+                using var img = Pix.LoadFromMemory(imageBytes);
+                using var page = engine.Process(img);
+                text = page.GetText();
+            }
+
+            Console.WriteLine(text);
         }
     }
 }
