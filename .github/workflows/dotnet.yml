@@ -18,8 +18,8 @@ jobs:
     - uses: actions/checkout@v4
     - run: sudo apt install tesseract-ocr
     - run: sudo apt install libtesseract-dev
-    - run: ls /usr/lib/x86_64-linux-gnu
-    - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5 libleptonica-1.80.0.so
+    - working_directory: TestTesseract/x64
+      run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5 libleptonica-1.80.0.so
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
