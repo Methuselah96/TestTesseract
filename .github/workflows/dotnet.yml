@@ -24,6 +24,8 @@ jobs:
     - run: sudo apt update
     - run: sudo apt install tesseract-ocr
     - run: sudo apt install libtesseract-dev
+    - run: ls
+      working-directory: ./out
     - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5 ./out/x64/libleptonica-1.82.0.so
     - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so.5 ./out/x64/libtesseract50.so
     - run: dotnet ./TestTesseract/bin/Release/net8.0/publish/TestTesseract.dll
