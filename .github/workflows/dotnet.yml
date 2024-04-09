@@ -24,11 +24,11 @@ jobs:
         dotnet-version: 8.0.x
     - run: dotnet publish -c Release
       working-directory: ./TestTesseract
-    - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5 ./TestTesseract/bin/Release/net8.0/publish/x64/libleptonica-1.82.0.so
-    - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so.5 ./TestTesseract/bin/Release/net8.0/publish/x64/libtesseract50.so
     - run: ls
       working-directory: ./TestTesseract/bin/Release/net8.0/publish
     - run: ls
       working-directory: ./TestTesseract/bin/Release/net8.0/publish/x64
+    - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5 ./TestTesseract/bin/Release/net8.0/publish/x64/libleptonica-1.82.0.so
+    - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so.5 ./TestTesseract/bin/Release/net8.0/publish/x64/libtesseract50.so
     - name: Run
       run: dotnet ./TestTesseract/bin/Release/net8.0/publish/TestTesseract.dll
