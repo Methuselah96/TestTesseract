@@ -16,16 +16,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - run: sudo apt install tesseract-ocr
-    - run: sudo apt install libtesseract-dev
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+    - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - run: dotnet publish -c Release
-      working-directory: ./TestTesseract
-    - run: mkdir ./TestTesseract/bin/Release/net8.0/publish/x64
-    - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5 ./TestTesseract/bin/Release/net8.0/publish/x64/libleptonica-1.82.0.so
-    - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so.5 ./TestTesseract/bin/Release/net8.0/publish/x64/libtesseract50.so
-    - name: Run
-      run: dotnet ./TestTesseract/bin/Release/net8.0/publish/TestTesseract.dll
+    - run: dotnet restore ./TestTesseract/TestTesseract.csproj
+    - run: dotnet publish  ./TestTesseract/TestTesseract.csproj -c Release -o out
+    - run: sudo apt update
+    - run: sudo apt install tesseract-ocr
+    - run: sudo apt install libtesseract-dev
+    - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5 ./out/x64/libleptonica-1.82.0.so
+    - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so.5 ./out/x64/libtesseract50.so
+    - run: dotnet ./TestTesseract/bin/Release/net8.0/publish/TestTesseract.dll
