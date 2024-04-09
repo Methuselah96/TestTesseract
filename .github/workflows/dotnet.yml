@@ -21,14 +21,14 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 7.0.x
     - run: dotnet publish -c Release
       working-directory: ./TestTesseract
     - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5 ./TestTesseract/bin/Release/net6.0/publish/x64/libleptonica-1.80.0.so
     - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so.4 ./TestTesseract/bin/Release/net6.0/publish/x64/libtesseract41.so
     - run: ls
-      working-directory: ./TestTesseract/bin/Release/net6.0/publish
+      working-directory: ./TestTesseract/bin/Release/net7.0/publish
     - run: ls
-      working-directory: ./TestTesseract/bin/Release/net6.0/publish/tessdata
+      working-directory: ./TestTesseract/bin/Release/net7.0/publish/tessdata
     - name: Run
-      run: dotnet ./TestTesseract/bin/Release/net6.0/publish/TestTesseract.dll
+      run: dotnet ./TestTesseract/bin/Release/net7.0/publish/TestTesseract.dll
