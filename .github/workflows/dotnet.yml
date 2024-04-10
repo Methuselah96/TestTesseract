@@ -17,8 +17,8 @@ jobs:
     - run: dotnet restore ./TestTesseract/TestTesseract.csproj
     - run: dotnet publish  ./TestTesseract/TestTesseract.csproj -c Release -o out
     - run: sudo apt update
+    - run: sudo apt install libleptonica-dev
     - run: sudo apt install tesseract-ocr
-    - run: sudo apt install libtesseract-dev
     - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so ./out/x64/libleptonica-1.82.0.so
     - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so ./out/x64/libtesseract50.so
     - run: dotnet ./TestTesseract/bin/Release/net8.0/publish/TestTesseract.dll
