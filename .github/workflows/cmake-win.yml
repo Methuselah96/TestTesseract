@@ -74,3 +74,13 @@ jobs:
       with:
         name: tesseract-${{ matrix.arch }}
         path: tesseract\vs17-${{ matrix.arch }}\bin\Release
+    - name: Archive Leptonica ${{ matrix.arch }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: leptonica-${{ matrix.arch }}-build
+        path: ..\..\build\${{ matrix.arch }}
+    - name: Archive Tesseract ${{ matrix.arch }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: tesseract-${{ matrix.arch }}-build
+        path: ..\..\build\${{ matrix.arch }}
