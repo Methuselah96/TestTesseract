@@ -5,6 +5,11 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    
+defaults:
+  run:
+    shell: cmd
+    working-directory: ./scripts
 
 jobs:
   build-windows:
