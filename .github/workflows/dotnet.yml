@@ -20,6 +20,7 @@ jobs:
     - run: sudo apt update
     - run: sudo apt install tesseract-ocr
     - run: sudo apt install libleptonica-dev
+    - run: sudo apt install tesseract-ocr-eng
     - run: ls -lh /usr/lib/x86_64-linux-gnu
     - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5.0.4 ./out/x64/libleptonica-1.82.0.so
     - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so.5.0.3 ./out/x64/libtesseract50.so
