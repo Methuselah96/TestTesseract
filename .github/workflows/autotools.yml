@@ -1,4 +1,4 @@
-name: cmake
+name: autotools
 
 on:
   push:
@@ -13,8 +13,8 @@ jobs:
     steps:
     - name: Install packages
       run: |
-        apt-get update
-        apt-get install automake ca-certificates g++ git libtool libleptonica-dev make pkg-config
+        sudo apt-get update
+        sudo apt-get install automake ca-certificates g++ git libtool libleptonica-dev make pkg-config
 
     - name: Checkout Tesseract
       uses: actions/checkout@v4
