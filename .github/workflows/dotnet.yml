@@ -21,4 +21,4 @@ jobs:
     - run: sudo apt install tesseract-ocr
     - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so ./out/x64/libleptonica-1.82.0.so
     - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so ./out/x64/libtesseract50.so
-    - run: dotnet ./TestTesseract/bin/Release/net8.0/publish/TestTesseract.dll
+    - run: dotnet ./out/TestTesseract.dll
