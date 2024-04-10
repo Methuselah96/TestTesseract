@@ -1,0 +1,32 @@
+name: cmake
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install packages
+      run: |
+        apt-get update
+        apt-get install automake ca-certificates g++ git libtool libleptonica-dev make pkg-config
+
+    - name: Checkout Tesseract
+      uses: actions/checkout@v4
+      with:
+        repository: tesseract-ocr/tesseract
+        ref: 5.2.0
+    
+    - name: Build Tesseract
+      run: |
+        cd tesseract
+        ./autogen.sh
+        ./configure
+        make
+        sudo make install
+        sudo ldconfig
