@@ -22,4 +22,5 @@ jobs:
     - run: ls -la /usr/lib/x86_64-linux-gnu
     - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5.0.4 ./out/x64/libleptonica-1.82.0.so
     - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so.4.0.1 ./out/x64/libtesseract50.so
+    - run: ls out
     - run: dotnet ./out/TestTesseract.dll
