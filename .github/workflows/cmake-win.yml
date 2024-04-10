@@ -1,0 +1,76 @@
+name: cmake-win64
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: cmd
+
+jobs:
+  build-windows:
+    strategy:
+      matrix:
+        arch: [x86, x64]
+    runs-on: windows-latest
+    steps:
+    - name: Install zlib-ng
+      run: vcpkg install zlib-ng:${{ matrix.arch }}-windows-static
+    - name: Install libpng
+      run: vcpkg install libpng:${{ matrix.arch }}-windows-static
+    - name: Install giflib
+      run: vcpkg install giflib:${{ matrix.arch }}-windows-static
+    - name: Install libjpeg
+      run: vcpkg install libjpeg-turbo:${{ matrix.arch }}-windows-static
+    - name: Install openjpeg
+      run: vcpkg install openjpeg:${{ matrix.arch }}-windows-static
+    - name: Install webp
+      run: vcpkg install libwebp:${{ matrix.arch }}-windows-static
+    - name: Install jbigkit
+      run: vcpkg install jbigkit:${{ matrix.arch }}-windows-static
+    - name: Install zstd
+      run: vcpkg install zstd:${{ matrix.arch }}-windows-static
+    - name: Install lzma
+      run: vcpkg install liblzma:${{ matrix.arch }}-windows-static
+    - name: Install libtiff
+      run: vcpkg install tiff:${{ matrix.arch }}-windows-static
+    - name: Checkout Leptonica
+      uses: actions/checkout@v4
+      with:
+        repository: DanBloomberg/leptonica
+        ref: 1.84.1
+        path: leptonica
+    - name: Build Leptonica ${{ matrix.arch }}
+      run: |
+        mkdir vs17-${{ matrix.arch }}
+        cd vs17-${{ matrix.arch }}
+        cmake .. -G "Visual Studio 17 2022" -A ${{ matrix.arch == 'x86' && 'Win32' || 'x64' }} -DSW_BUILD=OFF -DBUILD_SHARED_LIBS=ON -DCMAKE_TOOLCHAIN_FILE=%VCPKG_INSTALLATION_ROOT%\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=${{ matrix.arch }}-windows-static -DCMAKE_INSTALL_PREFIX=..\..\build\${{ matrix.arch }}
+        cmake --build . --config Release --target install
+      working-directory: leptonica
+    - name: Checkout Tesseract
+      uses: actions/checkout@v4
+      with:
+        repository: tesseract-ocr/tesseract
+        ref: 5.3.4
+        path: tesseract
+    - name: Build Tesseract ${{ matrix.arch }}
+      run: |
+        mkdir vs17-${{ matrix.arch }}
+        cd vs17-${{ matrix.arch }}
+        cmake .. -G "Visual Studio 17 2022" -A ${{ matrix.arch == 'x86' && 'Win32' || 'x64' }} -DAUTO_OPTIMIZE=OFF -DSW_BUILD=OFF -DBUILD_TRAINING_TOOLS=OFF -DCMAKE_INSTALL_PREFIX=..\..\build\${{ matrix.arch }}
+        cmake --build . --config Release --target install
+      working-directory: tesseract
+    - name: Archive Leptonica ${{ matrix.arch }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: leptonica-${{ matrix.arch }}
+        path: leptonica\vs17-${{ matrix.arch }}
+    - name: Archive Tesseract ${{ matrix.arch }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: tesseract-${{ matrix.arch }}
+        path: tesseract\vs17-${{ matrix.arch }}
