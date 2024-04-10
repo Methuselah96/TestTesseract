@@ -1,4 +1,4 @@
-name: cmake-win64
+name: cmake-win
 
 on:
   push:
@@ -68,9 +68,9 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: leptonica-${{ matrix.arch }}
-        path: leptonica\vs17-${{ matrix.arch }}
+        path: leptonica\vs17-${{ matrix.arch }}\bin\Release
     - name: Archive Tesseract ${{ matrix.arch }}
       uses: actions/upload-artifact@v4
       with:
         name: tesseract-${{ matrix.arch }}
-        path: tesseract\vs17-${{ matrix.arch }}
+        path: tesseract\vs17-${{ matrix.arch }}\bin\Release
