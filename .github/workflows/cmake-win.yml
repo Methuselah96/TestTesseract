@@ -19,26 +19,8 @@ jobs:
         arch: [x86, x64]
     runs-on: windows-latest
     steps:
-    - name: Install zlib-ng
-      run: vcpkg install zlib-ng:${{ matrix.arch }}-windows-static
-    - name: Install libpng
-      run: vcpkg install libpng:${{ matrix.arch }}-windows-static
-    - name: Install giflib
-      run: vcpkg install giflib:${{ matrix.arch }}-windows-static
-    - name: Install libjpeg
-      run: vcpkg install libjpeg-turbo:${{ matrix.arch }}-windows-static
-    - name: Install openjpeg
-      run: vcpkg install openjpeg:${{ matrix.arch }}-windows-static
-    - name: Install webp
-      run: vcpkg install libwebp:${{ matrix.arch }}-windows-static
-    - name: Install jbigkit
-      run: vcpkg install jbigkit:${{ matrix.arch }}-windows-static
-    - name: Install zstd
-      run: vcpkg install zstd:${{ matrix.arch }}-windows-static
-    - name: Install lzma
-      run: vcpkg install liblzma:${{ matrix.arch }}-windows-static
-    - name: Install libtiff
-      run: vcpkg install tiff:${{ matrix.arch }}-windows-static
+    - name: Install dependencies
+      run: vcpkg install giflib:${{ matrix.arch }}-windows-static libjpeg-turbo:${{ matrix.arch }}-windows-static liblzma:${{ matrix.arch }}-windows-static libpng:${{ matrix.arch }}-windows-static tiff:${{ matrix.arch }}-windows-static zlib:${{ matrix.arch }}-windows-static
     - name: Checkout Leptonica
       uses: actions/checkout@v4
       with:
