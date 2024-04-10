@@ -16,8 +16,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - run: vcpkg install giflib:x86-windows-static libjpeg-turbo:x86-windows-static liblzma:x86-windows-static libpng:x86-windows-static libwebp:x86-windows-static tiff:x86-windows-static zlib:x86-windows-static
-    - run: vcpkg install giflib:x64-windows-static libjpeg-turbo:x64-windows-static liblzma:x64-windows-static libpng:x64-windows-static libwebp:x64-windows-static tiff:x64-windows-static zlib:x64-windows-static
+    - run: vcpkg install giflib:x86-windows-static jbigkit:x86-windows-static libjpeg-turbo:x86-windows-static liblzma:x86-windows-static libpng:x86-windows-static libwebp:x86-windows-static openjpeg:x86-windows-static tiff:x86-windows-static zlib-ng:x86-windows-static zstd:x86-windows-static
+    - run: vcpkg install giflib:x64-windows-static jbigkit:x64-windows-static libjpeg-turbo:x64-windows-static liblzma:x64-windows-static libpng:x64-windows-static libwebp:x64-windows-static openjpeg:x64-windows-static tiff:x64-windows-static zlib-ng:x64-windows-static zstd:x64-windows-static
     - uses: actions/checkout@v4
       with:
         repository: DanBloomberg/leptonica
