@@ -16,8 +16,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - run: vcpkg install giflib:x86-windows-static libjpeg-turbo:x86-windows-static liblzma:x86-windows-static libpng:x86-windows-static tiff:x86-windows-static zlib:x86-windows-static
-    - run: vcpkg install giflib:x64-windows-static libjpeg-turbo:x64-windows-static liblzma:x64-windows-static libpng:x64-windows-static tiff:x64-windows-static zlib:x64-windows-static
+    - run: vcpkg install giflib:x86-windows-static libjpeg-turbo:x86-windows-static liblzma:x86-windows-static libpng:x86-windows-static libwebp:x86-windows-static tiff:x86-windows-static zlib:x86-windows-static
+    - run: vcpkg install giflib:x64-windows-static libjpeg-turbo:x64-windows-static liblzma:x64-windows-static libpng:x64-windows-static libwebp:x64-windows-static tiff:x64-windows-static zlib:x64-windows-static
     - uses: actions/checkout@v4
       with:
         repository: DanBloomberg/leptonica
@@ -44,7 +44,7 @@ jobs:
     - run: cmake --build . --config Release --target install
       working-directory: .\tesseract\vs17-x86\
     - run: mkdir .\tesseract\vs17-x64\
-    - run: cmake .. -G "Visual Studio 17 2022" -A x64   -DAUTO_OPTIMIZE=OFF -DSW_BUILD=OFF -DBUILD_TRAINING_TOOLS=OFF -DCMAKE_INSTALL_PREFIX=..\..\build\x64
+    - run: cmake .. -G "Visual Studio 17 2022" -A x64 -DAUTO_OPTIMIZE=OFF -DSW_BUILD=OFF -DBUILD_TRAINING_TOOLS=OFF -DCMAKE_INSTALL_PREFIX=..\..\build\x64
       working-directory: .\tesseract\vs17-x64\
     - run: cmake --build . --config Release --target install
       working-directory: .\tesseract\vs17-x64\
