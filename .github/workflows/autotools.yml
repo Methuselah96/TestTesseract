@@ -25,11 +25,11 @@ jobs:
     - name: Build Tesseract
       run: |
         ./autogen.sh
-        ./configure --prefix=../tesseract-build/
+        ./configure --prefix=$HOME/tesseract-build/
         make
         sudo make install
     - name: Archive Tesseract
       uses: actions/upload-artifact@v4
       with:
         name: tesserac-build
-        path: ../tesseract-build/
+        path: $HOME/tesseract-build/
