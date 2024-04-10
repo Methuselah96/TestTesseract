@@ -26,7 +26,7 @@ jobs:
       run: ./autogen.sh
 
     - name: Configure Tesseract
-      run: ./configure --prefix=$HOME/tesseract-build/
+      run: ./configure
 
     - name: Make Tesseract
       run: make
@@ -38,10 +38,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: tesseract-build
-        path: ~/tesseract-build
+        path: /usr/local/lib/libtesseract.so.5.0.2
 
     - name: Upload Leptonica artifact
       uses: actions/upload-artifact@v4
       with:
-        name: tesseract-build
+        name: leptonica-build
         path: /usr/lib/x86_64-linux-gnu/liblept.so.5.0.4

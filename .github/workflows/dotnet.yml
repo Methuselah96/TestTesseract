@@ -16,11 +16,12 @@ jobs:
         dotnet-version: 8.0.x
     - run: dotnet restore ./TestTesseract/TestTesseract.csproj
     - run: dotnet publish  ./TestTesseract/TestTesseract.csproj -c Release -o out
+    - run: sudo add-apt-repository ppa:alex-p/tesseract-ocr-devel
     - run: sudo apt update
+    - run: sudo apt install tesseract-ocr
     - run: sudo apt install libleptonica-dev
-    - run: sudo apt install libtesseract-dev
     - run: ls -lh /usr/lib/x86_64-linux-gnu
     - run: ln -s /usr/lib/x86_64-linux-gnu/liblept.so.5.0.4 ./out/x64/libleptonica-1.82.0.so
-    - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so.4.0.1 ./out/x64/libtesseract50.so
+    - run: ln -s /usr/lib/x86_64-linux-gnu/libtesseract.so.5.0.3 ./out/x64/libtesseract50.so
     - run: ls out
     - run: dotnet ./out/TestTesseract.dll
