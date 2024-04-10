@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tesseract\Tesseract.csproj" />
+    <ProjectReference Include="..\tesseract\src\Tesseract\Tesseract.csproj" />
   </ItemGroup>
 
   <ItemGroup>

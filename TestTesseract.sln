@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTesseract", "TestTesseract\TestTesseract.csproj", "{52AC90F0-EBED-4629-A244-7AF30C7FC52A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tesseract", "Tesseract\Tesseract.csproj", "{7278BDFC-97D8-47D8-A3A7-65DF2ED2E225}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tesseract", "tesseract\src\Tesseract\Tesseract.csproj", "{92884A53-5C78-4970-B76E-AE8AA4EA34D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{52AC90F0-EBED-4629-A244-7AF30C7FC52A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52AC90F0-EBED-4629-A244-7AF30C7FC52A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52AC90F0-EBED-4629-A244-7AF30C7FC52A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7278BDFC-97D8-47D8-A3A7-65DF2ED2E225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7278BDFC-97D8-47D8-A3A7-65DF2ED2E225}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7278BDFC-97D8-47D8-A3A7-65DF2ED2E225}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7278BDFC-97D8-47D8-A3A7-65DF2ED2E225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92884A53-5C78-4970-B76E-AE8AA4EA34D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92884A53-5C78-4970-B76E-AE8AA4EA34D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92884A53-5C78-4970-B76E-AE8AA4EA34D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92884A53-5C78-4970-B76E-AE8AA4EA34D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
