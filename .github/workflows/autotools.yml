@@ -21,15 +21,27 @@ jobs:
       with:
         repository: tesseract-ocr/tesseract
         ref: 5.2.0
-    
-    - name: Build Tesseract
-      run: |
-        ./autogen.sh
-        ./configure --prefix=$HOME/tesseract-build/
-        make
-        sudo make install
-    - name: Archive Tesseract
+
+    - name: Setup Tesseract
+      run: ./autogen.sh
+
+    - name: Configure Tesseract
+      run: ./configure --prefix=$HOME/tesseract-build/
+
+    - name: Make Tesseract
+      run: make
+
+    - name: Install Tesseract
+      run: make install
+
+    - name: Upload Tesseract artifact
       uses: actions/upload-artifact@v4
       with:
         name: tesseract-build
         path: ~/tesseract-build
+
+    - name: Upload Leptonica artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: tesseract-build
+        path: /usr/lib/x86_64-linux-gnu/liblept.so.5.0.4

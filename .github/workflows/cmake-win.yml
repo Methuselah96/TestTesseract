@@ -85,3 +85,9 @@ jobs:
       with:
         name: tesseract-${{ matrix.arch }}-build
         path: ..\..\build\${{ matrix.arch }}
+    - name: Archive Failure Logs
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: tiff-failure-logs
+        path: C:\vcpkg\buildtrees\tiff
