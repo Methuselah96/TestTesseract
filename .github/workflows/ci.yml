@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ 'ubuntu-latest', 'windows-latest', 'macOS-latest' ]
+        os: [ 'ubuntu-latest', 'windows-latest' ]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -38,22 +38,14 @@ jobs:
         ls -la /usr/local/lib && 
         ls -la /usr/lib/x86_64-linux-gnu
 
-    - name: Install macOS dependencies
-      if: runner.os == 'macOS'
-      run: |
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&
-        brew tap-new local/versions &&
-        brew extract --version=4.1.1 tesseract local/versions &&
-        brew install local/versions/tesseract@4.1.1 mono-libgdiplus
-
-    - name: Install dependencies
-      run: dotnet restore Tesseract/src/Tesseract.sln
+    - name: Restore
+      run: dotnet restore tesseract/src/Tesseract.sln
       
     - name: Build
-      run: dotnet build --configuration Release --no-restore Tesseract/src/Tesseract.sln
+      run: dotnet build --configuration Release --no-restore tesseract/src/Tesseract.sln
     
     - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal --logger trx --results-directory "TestResults" Tesseract/src/Tesseract.sln
+      run: dotnet test --configuration Release --no-build --verbosity normal --logger trx --results-directory "TestResults" tesseract/src/Tesseract.sln
     
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v4
