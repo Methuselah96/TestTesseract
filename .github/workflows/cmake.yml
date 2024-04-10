@@ -1,0 +1,47 @@
+name: cmake
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install packages
+      run: |
+        sudo apt-get update
+        sudo apt-get install g++ -y
+        sudo apt-get install autoconf libleptonica-dev -y
+        sudo apt-get install libarchive-dev libcurl4-openssl-dev -y
+        sudo apt-get install libpango1.0-dev -y
+        sudo apt-get install cabextract -y
+        sudo apt-get install ninja-build -y
+        cmake --version
+
+    - name: Checkout Tesseract
+      uses: actions/checkout@v4
+      with:
+        repository: tesseract-ocr/tesseract
+        ref: 5.2.0
+    
+    - name: Configure Tesseract
+      run: |
+        mkdir build
+        mkdir inst
+        cmake \
+          -S . \
+          -B build \
+          -G Ninja \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DOPENMP_BUILD=OFF \
+          -DCMAKE_INSTALL_PREFIX:PATH=inst
+
+    - name: Build Tesseract
+      run: cmake --build build --config Release --target install
+
+    - name: Display Tesseract Version
+      run: build/inst/bin/tesseract -v
