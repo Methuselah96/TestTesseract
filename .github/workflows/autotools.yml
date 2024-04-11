@@ -35,16 +35,13 @@ jobs:
       run: sudo ldconfig
 
     - name: Check stuff
-      run: sudo ldd /usr/local/lib/libtesseract.so.5.0.2
-
-    - name: Check other stuff
-      run: sudo objdump -s /usr/local/lib/libtesseract.so.5.0.2
+      run: sudo ldd /usr/local/lib/libtesseract.so.5.0.3
 
     - name: Upload Tesseract artifact
       uses: actions/upload-artifact@v4
       with:
         name: tesseract-build
-        path: /usr/local/lib/libtesseract.so.5.0.2
+        path: /usr/local/lib/libtesseract.so.5.0.3
 
     - name: Upload Leptonica artifact
       uses: actions/upload-artifact@v4
