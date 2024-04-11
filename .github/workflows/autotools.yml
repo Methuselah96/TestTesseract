@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install packages
-      run: apt install libleptonica-dev
+      run: sudo apt install libleptonica-dev
 
     - name: Checkout Tesseract
       uses: actions/checkout@v4
