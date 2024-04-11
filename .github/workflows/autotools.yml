@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install packages
-      run: sudo apt install libleptonica-dev
+      run: sudo apt-get install libleptonica-dev
 
     - name: Checkout Tesseract
       uses: actions/checkout@v4
@@ -24,13 +24,22 @@ jobs:
       run: ./autogen.sh
 
     - name: Configure Tesseract
-      run: ./configure '--disable-openmp' '--disable-doc' 'CXXFLAGS=-g -O2'
+      run: ./configure '--disable-openmp' '--disable-doc'
 
     - name: Make Tesseract
       run: make
 
     - name: Install Tesseract
       run: sudo make install
+
+    - name: Update linker bindings
+      run: sudo ldconfig
+
+    - name: Check stuff
+      run: sudo ldd /usr/local/lib/libtesseract.so.5.0.2
+
+    - name: Check other stuff
+      run: sudo objdump -s /usr/local/lib/libtesseract.so.5.0.2
 
     - name: Upload Tesseract artifact
       uses: actions/upload-artifact@v4
