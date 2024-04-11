@@ -12,9 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install packages
-      run: |
-        sudo apt-get update
-        sudo apt-get install automake ca-certificates g++ git libtool libleptonica-dev make pkg-config
+      run: apt install libleptonica-dev
 
     - name: Checkout Tesseract
       uses: actions/checkout@v4
@@ -26,7 +24,7 @@ jobs:
       run: ./autogen.sh
 
     - name: Configure Tesseract
-      run: ./configure '--disable-shared' '--disable-openmp' '--disable-doc' 'CXXFLAGS=-g -O2'
+      run: ./configure '--disable-openmp' '--disable-doc' 'CXXFLAGS=-g -O2'
 
     - name: Make Tesseract
       run: make
