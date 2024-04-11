@@ -26,3 +26,13 @@ jobs:
     - run: ls out
     - run: dotnet TestTesseract.dll
       working-directory: out
+    - name: Archive Leptonica
+      uses: actions/upload-artifact@v4
+      with:
+        name: leptonica-latest
+        path: /usr/lib/x86_64-linux-gnu/liblept.so.5.0.4
+    - name: Archive Tesseract
+      uses: actions/upload-artifact@v4
+      with:
+        name: tesseract-latest
+        path: /usr/lib/x86_64-linux-gnu/libtesseract.so.5.0.3
