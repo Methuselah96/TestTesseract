@@ -18,12 +18,13 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: tesseract-ocr/tesseract
+        ref: 5.3.4
 
     - name: Setup Tesseract
       run: ./autogen.sh
 
     - name: Configure Tesseract
-      run: ./configure '--disable-openmp' '--disable-doc'
+      run: ./configure
 
     - name: Make Tesseract
       run: make
@@ -33,9 +34,6 @@ jobs:
 
     - name: Update linker bindings
       run: sudo ldconfig
-
-    - name: Check stuff
-      run: sudo ldd /usr/local/lib/libtesseract.so.5.0.3
 
     - name: Upload Tesseract artifact
       uses: actions/upload-artifact@v4
