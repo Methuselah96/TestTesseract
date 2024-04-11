@@ -26,7 +26,7 @@ jobs:
       run: ./autogen.sh
 
     - name: Configure Tesseract
-      run: ./configure
+      run: ./configure '--disable-shared' '--disable-openmp' '--disable-doc' 'CXXFLAGS=-g -O2'
 
     - name: Make Tesseract
       run: make
