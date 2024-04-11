@@ -24,7 +24,7 @@ jobs:
       run: ./autogen.sh
 
     - name: Configure Tesseract
-      run: ./configure
+      run: ./configure '--disable-debug'
 
     - name: Make Tesseract
       run: make
