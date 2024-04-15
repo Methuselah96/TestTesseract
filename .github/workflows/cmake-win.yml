@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: DanBloomberg/leptonica
-        ref: 1.84.1
+        ref: 1.82.0
         path: leptonica
     - name: Build Leptonica ${{ matrix.arch }}
       run: |
@@ -38,7 +38,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: tesseract-ocr/tesseract
-        ref: 5.3.4
+        ref: 5.2.0
         path: tesseract
     - name: Build Tesseract ${{ matrix.arch }}
       run: |
