@@ -38,7 +38,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: tesseract-ocr/tesseract
-        ref: 5.2.0
+        ref: 5.0.0
         path: tesseract
     - name: Build Tesseract ${{ matrix.arch }}
       run: |
