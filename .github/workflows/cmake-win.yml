@@ -47,13 +47,25 @@ jobs:
         cmake .. -G "Visual Studio 17 2022" -A ${{ matrix.arch == 'x86' && 'Win32' || 'x64' }} -DAUTO_OPTIMIZE=OFF -DSW_BUILD=OFF -DBUILD_SHARED_LIBS=ON -DBUILD_TRAINING_TOOLS=OFF -DCMAKE_INSTALL_PREFIX=..\..\build\${{ matrix.arch }}
         cmake --build . --config Release --target install
       working-directory: tesseract
+    - name: Checkout Tesseract
+      uses: actions/checkout@v4
+      with:
+        path: tesseract-net
+    - name: Calculate hash of existing Leptonica
+      run: certutil -hashfile tesseract-net\tesseract\src\Tesseract\${{ matrix.arch }}\leptonica-1.82.0.dll SHA256
+    - name: Calculate hash of built Leptonica
+      run: certutil -hashfile leptonica\vs17-${{ matrix.arch }}\bin\Release\leptonica-1.82.0.dll SHA256
+    - name: Calculate hash of existing Tesseract
+      run: certutil -hashfile tesseract-net\tesseract\src\Tesseract\${{ matrix.arch }}\tesseract50.dll SHA256
+    - name: Calculate hash of built Leptonica
+      run: certutil -hashfile tesseract\vs17-${{ matrix.arch }}\bin\Release\tesseract50.dll SHA256
     - name: Archive Leptonica ${{ matrix.arch }}
       uses: actions/upload-artifact@v4
       with:
         name: leptonica-${{ matrix.arch }}
-        path: leptonica\vs17-${{ matrix.arch }}\bin\Release
+        path: leptonica\vs17-${{ matrix.arch }}\bin\Release\leptonica-1.82.0.dll
     - name: Archive Tesseract ${{ matrix.arch }}
       uses: actions/upload-artifact@v4
       with:
         name: tesseract-${{ matrix.arch }}
-        path: tesseract\vs17-${{ matrix.arch }}\bin\Release
+        path: tesseract\vs17-${{ matrix.arch }}\bin\Release\tesseract50.dll
